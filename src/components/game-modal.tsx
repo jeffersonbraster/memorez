@@ -51,7 +51,7 @@ Joguei em ${date} no nível ${getDifficultyText(difficulty)} e consegui em ${mov
 
 ${formattedHistory}
 
-👉 Jogue você também: https://memorez.jefferson.brandao.com.br`;
+👉 Jogue você também: https://memorez.jeffersonbrandao.com.br`;
 
     try {
       await navigator.clipboard.writeText(shareText);
