@@ -29,7 +29,7 @@ const GameModal = ({
       )
       .join("\n");
 
-    const shareText = `🎮 MemoreZ - Jogo da Memória 🎮
+    const shareText = `Parabéns! 🎉
 
 Joguei em ${date} e consegui em ${moves} tentativas e ${time}!
 
