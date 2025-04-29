@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { Difficulty } from "@/types";
 
 type GameModalProps = {
   moves: number;
   time: string | number;
   onRestart: () => void;
   attemptHistory: string[];
+  difficulty: Difficulty;
 };
 
 const GameModal = ({
@@ -12,8 +14,22 @@ const GameModal = ({
   time,
   onRestart,
   attemptHistory,
+  difficulty,
 }: GameModalProps) => {
   const [isCopied, setIsCopied] = useState(false);
+
+  const getDifficultyText = (difficulty: Difficulty) => {
+    switch (difficulty) {
+      case "easy":
+        return "Fácil";
+      case "medium":
+        return "Médio";
+      case "hard":
+        return "Difícil";
+      default:
+        return "";
+    }
+  };
 
   const handleShare = async () => {
     const date = new Date().toLocaleDateString("pt-BR");
@@ -29,9 +45,9 @@ const GameModal = ({
       )
       .join("\n");
 
-    const shareText = `🎮 MemoreZ - Jogo da Memória 🎮
+    const shareText = `🎮 MemoreZ - Jogo da Memória ��
 
-Joguei em ${date} e consegui em ${moves} tentativas e ${time}!
+Joguei em ${date} no nível ${getDifficultyText(difficulty)} e consegui em ${moves} tentativas e ${time}!
 
 ${formattedHistory}
 
@@ -52,12 +68,12 @@ ${formattedHistory}
     // Formatar o histórico para o Twitter (mais conciso)
     const twitterHistory = attemptHistory.join("");
 
-    const text = `🎮 Joguei MemoreZ em ${date} e consegui em ${moves} tentativas e ${time}!
+    const text = `🎮 Joguei MemoreZ em ${date} no nível ${getDifficultyText(difficulty)} e consegui em ${moves} tentativas e ${time}!
 
 ${twitterHistory}
 
 Jogue você também:`;
-    const url = "https://memorez.jefferson.brandao.com.br";
+    const url = "https://memorez.jeffersonbrandao.com.br";
     const hashtags = "MemoreZ,JogoDaMemoria";
 
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${hashtags}`;

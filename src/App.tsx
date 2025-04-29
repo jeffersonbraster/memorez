@@ -55,6 +55,7 @@ function App() {
           time={formattedTime}
           onRestart={handleRestart}
           attemptHistory={attemptHistory}
+          difficulty={difficulty}
         />
       )}
 
