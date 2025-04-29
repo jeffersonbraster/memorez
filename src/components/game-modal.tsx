@@ -35,7 +35,7 @@ Joguei em ${date} e consegui em ${moves} tentativas e ${time}!
 
 ${formattedHistory}
 
-👉 Jogue você também: https://memorez.jefferson.brandao.com.br`;
+👉 Jogue você também: https://memorez.jeffersonbrandao.com.br`;
 
     try {
       await navigator.clipboard.writeText(shareText);
