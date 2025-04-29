@@ -29,13 +29,13 @@ const GameModal = ({
       )
       .join("\n");
 
-    const shareText = `MemoreZ 🎮
+    const shareText = `🎮 MemoreZ - Jogo da Memória 🎮
 
 Joguei em ${date} e consegui em ${moves} tentativas e ${time}!
 
 ${formattedHistory}
 
-👉 Jogue você também: https://memorez.jeffersonbrandao.com.br`;
+👉 Jogue você também: https://memorez.jefferson.brandao.com.br`;
 
     try {
       await navigator.clipboard.writeText(shareText);
@@ -44,6 +44,24 @@ ${formattedHistory}
     } catch (error) {
       console.error("Erro ao copiar texto:", error);
     }
+  };
+
+  const handleTwitterShare = () => {
+    const date = new Date().toLocaleDateString("pt-BR");
+
+    // Formatar o histórico para o Twitter (mais conciso)
+    const twitterHistory = attemptHistory.join("");
+
+    const text = `🎮 Joguei MemoreZ em ${date} e consegui em ${moves} tentativas e ${time}!
+
+${twitterHistory}
+
+Jogue você também:`;
+    const url = "https://memorez.jefferson.brandao.com.br";
+    const hashtags = "MemoreZ,JogoDaMemoria";
+
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}&hashtags=${hashtags}`;
+    window.open(twitterUrl, "_blank");
   };
 
   return (
@@ -62,6 +80,12 @@ ${formattedHistory}
             className="rounded-lg bg-pink px-6 py-3 font-medium text-white transition-opacity hover:opacity-90"
           >
             Jogar novamente
+          </button>
+          <button
+            onClick={handleTwitterShare}
+            className="rounded-lg bg-[#1DA1F2] px-6 py-3 font-medium text-white transition-opacity hover:opacity-90"
+          >
+            Compartilhar no Twitter
           </button>
           <button
             onClick={handleShare}
